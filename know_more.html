@@ -1,0 +1,94 @@
+<!-- main/templates/main/know_more.html -->
+{% extends 'main/base.html' %}
+<!DOCTYPE html>
+<html lang="en">
+    {% block content %}
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Know More - Sports Event Management</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <style>
+        body {
+            background-color: #f8f9fa;
+        }
+        .content-container {
+            padding: 20px;
+        }
+        .card {
+            margin-bottom: 20px;
+        }
+    </style>
+</head>
+<body>
+    <nav class="navbar navbar-expand-lg navbar-light bg-light">
+        <a class="navbar-brand" href="{% url 'home' %}">AthleticWave</a>
+        <div class="collapse navbar-collapse" id="navbarNav">
+            <ul class="navbar-nav">
+                <li class="nav-item">
+                    <a href="{% url 'login' %}" class="btn btn-secondary">Logout</a>
+                </li>
+            </ul>
+        </div>
+    </nav>
+    
+    <div class="container content-container">
+        <h1>Know More About Sports Event Management</h1>
+        <p>Sports Event Management is a comprehensive system designed to streamline the organization and management of sports events. It provides tools for scheduling, team management, and reporting.</p>
+        
+        <div class="card">
+            <div class="card-header">
+                Features
+            </div>
+            <div class="card-body">
+                <h5 class="card-title">Key Features</h5>
+                <ul>
+                    <li>Team Management</li>
+                    <li>Event Scheduling</li>
+                    <li>Real-time Notifications</li>
+                    <li>Reporting and Analytics</li>
+                </ul>
+                <button class="btn btn-primary" onclick="showMoreFeatures()">Show More Features</button>
+                <div id="moreFeatures" style="display:none;">
+                    <ul>
+                        <li>Player Statistics</li>
+                        <li>Customizable Event Templates</li>
+                        <li>Multi-sport Support</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+        
+        <div class="card">
+            <div class="card-header">
+                Benefits
+            </div>
+            <div class="card-body">
+                <h5 class="card-title">Why Use Our System?</h5>
+                <p>Our system helps in reducing administrative overhead, improving communication, and enhancing the overall experience for players and organizers.</p>
+                <button class="btn btn-info" onclick="toggleBenefits()">Toggle Benefits</button>
+                <div id="benefits" style="display:none;">
+                    <ul>
+                        <li>Increased Efficiency</li>
+                        <li>Better Engagement</li>
+                        <li>Data-Driven Decisions</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        function showMoreFeatures() {
+            const moreFeatures = document.getElementById('moreFeatures');
+            moreFeatures.style.display = moreFeatures.style.display === 'none' ? 'block' : 'none';
+        }
+
+        function toggleBenefits() {
+            const benefits = document.getElementById('benefits');
+            benefits.style.display = benefits.style.display === 'none' ? 'block' : 'none';
+        }
+    </script>
+    {% endblock %}
+</body>
+</html>

@@ -1,0 +1,23 @@
+{% extends 'main/base.html' %}
+<!DOCTYPE html>
+<html lang="en">
+    {% block content %}
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Event List</title>
+    <link rel="stylesheet" href="{% static 'your_app/styles.css' %}"> <!-- Link to your custom CSS -->
+</head>
+<body>
+    <div class="container">
+        <h2>Upcoming Events</h2>
+        <ul>
+            {% for event in events %}
+                <li>{{ event.title }} - {{ event.date }} at {{ event.time }} - {{ event.location }}</li>
+            {% endfor %}
+        </ul>
+        <a href="{% url 'add_event' %}">Add New Event</a>
+    </div>
+    {% endblock %}
+</body>
+</html>

@@ -1,0 +1,75 @@
+<!-- main/templates/main/coach_dashboard.html -->
+{% extends 'main/base.html' %}
+<!DOCTYPE html>
+<html lang="en">
+    {% block content %}
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Coach Dashboard</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <style>
+        body {
+            background-color: #f8f9fa;
+        }
+        .dashboard-container {
+            padding: 20px;
+        }
+        .card {
+            margin-bottom: 20px;
+        }
+    </style>
+</head>
+<body>
+    <nav class="navbar navbar-expand-lg navbar-light bg-light"></nav>
+        <a class="navbar-brand" href="{% url 'home' %}">AthleticWave</a>
+        <div class="collapse navbar-collapse" id="navbarNav">
+            <ul class="navbar-nav">
+                <li class="nav-item">
+                    <!-- Added Logout button in the navbar -->
+                    <a href="{% url 'login' %}" class="btn btn-secondary">Logout</a>
+                </li>
+                <li class="nav-item">
+                    <a href="{% url 'know_more' %}" class="btn btn-secondary">Know_More</a>
+                </li>
+            </ul>
+        </div>
+    </nav>
+    <div class="container dashboard-container">
+        <h1>Coach Dashboard</h1>
+        <p>Welcome, Coach!</p>
+        <div class="card">
+            <div class="card-header">
+                Team Management
+            </div>
+            <div class="card-body">
+                <h5 class="card-title">Manage Your Team</h5>
+                <p class="card-text">View and manage your team members.</p>
+                <button class="btn btn-primary" onclick="manageTeam()">Manage Team</button>
+            </div>
+        </div>
+        <div class="card">
+            <div class="card-header">
+                Training Sessions
+            </div>
+            <div class="card-body">
+                <h5 class="card-title">Schedule Training</h5>
+                <p class="card-text">Create and manage training sessions.</p>
+                <button class="btn btn-primary" onclick="scheduleTraining()">Schedule Training</button>
+            </div>
+        </div>
+        <a href="{% url 'login' %}" class="btn btn-secondary">Logout</a>
+    </div>
+
+    <script>
+        function manageTeam() {
+            alert("Team management functionality will be implemented here.");
+        }
+
+        function scheduleTraining() {
+            alert("Training scheduling functionality will be implemented here.");
+        }
+    </script>
+    {% endblock %}
+</body>
+</html>

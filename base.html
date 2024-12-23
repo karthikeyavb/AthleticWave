@@ -1,0 +1,216 @@
+<!-- your_app/templates/your_app/base.html -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{% block title %}My Website{% endblock %}</title>
+    {% load static %}
+    <style>
+        /* your_app/static/your_app/styles.css */
+/* your_app/static/your_app/styles.css */
+body {
+    font-family: Arial, sans-serif;
+}
+
+/* Chatbot Icon */
+.chat-icon {
+    position: fixed;
+    bottom: 20px; /* Position from the bottom */
+    right: 20px;  /* Position from the right */
+    font-size: 40px; /* Size of the icon */
+    cursor: pointer; /* Change cursor to pointer */
+    background-color: #007bff; /* Bootstrap primary color */
+    color: white;
+    border-radius: 50%; /* Circular icon */
+    padding: 10px; /* Padding around the icon */
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
+    z-index: 1000; /* Ensure it is above other elements */
+}
+
+/* Chatbot Container */
+.chat-container {
+    width: 300px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    padding: 10px;
+    position: fixed;
+    bottom: 80px; /* Position above the icon */
+    right: 20px;  /* Position from the right */
+    background-color: white;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    display: none; /* Initially hidden */
+    z-index: 1000; /* Ensure it is above other elements */
+}
+
+.chat-box {
+    height: 200px;
+    overflow-y: auto;
+    border: 1px solid #ccc;
+    margin-bottom: 10px;
+    padding: 5px;
+}
+
+.chat-box div {
+    margin: 5px 0;
+    padding: 10px;
+    border-radius: 10px;
+    max-width: 80%;
+}
+
+.user-message {
+    background-color: #007bff; /* User message color */
+    color: white;
+    align-self: flex-end;
+}
+
+.bot-message {
+    background-color: #e5e5e5; /* Bot message color */
+    color: black;
+    align-self: flex-start; 
+}
+.input-area {
+    display: flex;
+    justify-content: space-between;
+}
+
+.input-area input {
+    flex: 1;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+}
+
+.input-area button {
+    padding: 10px;
+    border: none;
+    background-color: #007bff;
+    color: white;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+.input-area button:hover {
+    background-color: #0056b3; /* Darker shade on hover */
+}
+    </style>
+    
+    
+</head>
+<body>
+    {% block content %}
+    <!-- Main content of the page will be injected here -->
+    {% endblock %}
+
+    <div class="chat-icon" id="chat-icon" onclick="toggleChat()">
+        💬
+    </div>
+
+    <!-- Chatbot Container -->
+    <div class="chat-container" id="chat-container">
+        <div class="chat-box" id="chat-box"></div>
+        <div class="input-area">
+            <input type="text" id="user-input" placeholder="Type a message..." />
+            <button id="send-button">Send</button>
+        </div>
+    </div>
+
+    <script>
+document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+    anchor.addEventListener('click', function (e) {
+        e.preventDefault();
+
+        const targetId = this.getAttribute('href');
+        const targetElement = document.querySelector(targetId);
+
+        if (targetElement) {
+            targetElement.scrollIntoView({
+                behavior: 'smooth',
+                block: 'start'
+            });
+        }
+    });
+});
+
+// Function to handle card visibility
+const observer = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+        if (entry.isIntersecting) {
+            entry.target.classList.add('visible');
+            observer.unobserve(entry.target); // Stop observing once the card is visible
+        }
+    });
+});
+
+// Observe each card
+document.querySelectorAll('.card').forEach(card => {
+    observer.observe(card);
+
+    // Add hover event listeners
+    card.addEventListener('mouseenter', () => {
+        card.style.transform = 'scale(1.05)'; // Scale up on hover
+    });
+
+    card.addEventListener('mouseleave', () => {
+        card.style.transform = 'scale(1)'; // Scale back to original size
+    });
+});
+
+// Chatbot functionality
+document.getElementById('send-button').addEventListener('click', function() {
+    const userInput = document.getElementById('user-input').value;
+    if (userInput.trim() === '') {
+        return; // Prevent sending empty messages
+    }
+    addMessage(userInput, 'user');
+    document.getElementById('user-input').value = ''; // Clear input
+
+    // Simulate bot response
+    setTimeout(() => {
+        const botResponse = getBotResponse(userInput);
+        addMessage(botResponse, 'bot');
+    }, 1000);
+});
+
+function addMessage(message, sender) {
+    const chatBox = document.getElementById('chat-box');
+    const messageDiv = document.createElement('div');
+    messageDiv.className = sender === 'user' ? 'user-message' : 'bot-message';
+    messageDiv.textContent = message;
+    chatBox.appendChild(messageDiv);
+    chatBox.scrollTop = chatBox.scrollHeight; // Scroll to the bottom
+}
+
+function getBotResponse(input) {
+    const lowerInput = input.toLowerCase();
+
+    if (lowerInput.includes('hello') || lowerInput.includes('hi')) {
+        return "Hello! How can I assist you today?";
+    } else if (lowerInput.includes('how are you')) {
+        return "I'm just a program, but thanks for asking! How can I help you?";
+    } else if (lowerInput.includes('help')) {
+        return "Sure! What do you need help with?";
+    } else if (lowerInput.includes('bye')) {
+        return "Goodbye! Have a great day!";
+    } else if (lowerInput.includes('your name')) {
+        return "I'm a chatbot created to assist you!";
+    } else {
+        return "I'm sorry, I didn't understand that. Can you please rephrase?";
+    }
+}
+
+// Function to toggle the chat container
+function toggleChat() {
+    const chatContainer = document.getElementById('chat-container');
+    if (chatContainer.style.display === 'none' || chatContainer.style.display === '') {
+        chatContainer.style.display = 'block'; // Show the chat container
+    } else {
+        chatContainer.style.display = 'none'; // Hide the chat container
+    }
+}
+
+// Optional: Show the chat container on page load
+document.getElementById('chat-container').style.display = 'none'; // Ensure it's hidden initially
+</script>
+</body>
+</html>

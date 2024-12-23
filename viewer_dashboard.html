@@ -1,0 +1,75 @@
+<!-- main/templates/main/viewer_dashboard.html -->
+{% extends 'main/base.html' %}
+<!DOCTYPE html>
+<html lang="en">
+    {% block content %}
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Viewer Dashboard</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <style>
+        body {
+            background-color: #f8f9fa;
+        }
+        .dashboard-container {
+            padding: 20px;
+        }
+        .card {
+            margin-bottom: 20px;
+        }
+    </style>
+</head>
+<body>
+    <nav class="navbar navbar-expand-lg navbar-light bg-light"></nav>
+        <a class="navbar-brand" href="{% url 'home' %}">AthleticWave</a>
+        <div class="collapse navbar-collapse" id="navbarNav">
+            <ul class="navbar-nav">
+                <li class="nav-item">
+                    <!-- Added Logout button in the navbar -->
+                    <a href="{% url 'login' %}" class="btn btn-secondary">Logout</a>
+                </li>
+                <li class="nav-item">
+                    <a href="{% url 'know_more' %}" class="btn btn-secondary">Know_More</a>
+                </li>
+            </ul>
+        </div>
+    </nav>
+    <div class="container dashboard-container">
+        <h1>Viewer Dashboard</h1>
+        <p>Welcome, Viewer!</p>
+        <div class="card">
+            <div class="card-header">
+                View Events
+            </div>
+            <div class="card-body">
+                <h5 class="card-title">Upcoming Events</h5>
+                <p class="card-text">Check out the upcoming sports events.</p>
+                <button class="btn btn-primary" onclick="viewEvents()">View Events</button>
+            </div>
+        </div>
+        <div class="card">
+            <div class="card-header">
+                Feedback
+            </div>
+            <div class="card-body">
+                <h5 class="card-title">Provide Feedback</h5>
+                <p class="card-text">Share your thoughts about the events.</p>
+                <button class="btn btn-primary" onclick="provideFeedback()">Provide Feedback</button>
+            </div>
+        </div>
+        <a href="{% url 'login' %}" class="btn btn-secondary">Logout</a>
+    </div>
+
+    <script>
+        function viewEvents() {
+            alert("Event viewing functionality will be implemented here.");
+        }
+
+        function provideFeedback() {
+            alert("Feedback functionality will be implemented here.");
+        }
+    </script>
+    {% endblock %}
+</body>
+</html>

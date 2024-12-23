@@ -1,0 +1,86 @@
+<!-- main/templates/main/admin_dashboard.html -->
+{% extends 'main/base.html' %}
+<!DOCTYPE html>
+<html lang="en">
+    {% block content %}
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Admin Dashboard</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <style>
+        body {
+            background-color: #f8f9fa;
+        }
+        .dashboard-container {
+            padding: 20px;
+        }
+        .card {
+            margin-bottom: 20px;
+        }
+    </style>
+</head>
+<body>
+    <!-- main/templates/main/your_template.html -->
+<nav class="navbar navbar-expand-lg navbar-light bg-light">
+    <a class="navbar-brand" href="{% url 'home' %}">AthleticWave</a>
+    <div class="collapse navbar-collapse" id="navbarNav">
+        <ul class="navbar-nav ml-auto"> <!-- Added ml-auto to push items to the right -->
+            <li class="nav-item">
+                <a href="{% url 'know_more' %}" class="btn btn-info mr-2">Know More</a>
+            </li>
+            <li class="nav-item">
+                <a href="{% url 'login' %}" class="btn btn-secondary">Logout</a>
+            </li>
+        </ul>
+    </div>
+</nav>
+    <div class="container dashboard-container">
+        <h1>Admin Dashboard</h1>
+        <p>Welcome, Admin!</p>
+        <div class="card">
+            <div class="card-header">
+                User Management
+            </div>
+            <div class="card-body">
+                <h5 class="card-title">Add Events</h5>
+                <p class="card-text">Add, edit, or remove events from the system.</p>
+                <a href="{% url 'add_event' %}" class="btn btn-primary">Add New Event</a> 
+                <button class="btn btn-primary" onclick="manageUsers()">Add Events</button>
+            </div>
+        </div>
+        <div class="card">
+            <div class="card-header">
+                Reports
+            </div>
+            <div class="card-body">
+                <h5 class="card-title">View Reports</h5>
+                <p class="card-text">Generate and view reports on user activity.</p>
+                <button class="btn btn-primary" onclick="viewReports()">View Reports</button>
+            </div>
+        </div>
+        <div class="card"></div>
+            <div class="card-header">
+                User Management
+            </div>
+            <div class="card-body">
+                <h5 class="card-title">Manage Users</h5>
+                <p class="card-text">Add, edit, or remove Users from the system.</p>
+                <button class="btn btn-primary" onclick="manageUsers()">Manage Users</button>
+            </div>
+        </div>
+        <a href="{% url 'login' %}" class="btn btn-secondary">Logout</a>
+    </div>
+
+    <script>
+        function manageUsers() {
+            alert("User management functionality will be implemented here.");
+        }
+
+        function viewReports() {
+            alert("Report viewing functionality will be implemented here.");
+        }
+    </script>
+    {% endblock %}
+</body>
+</html>

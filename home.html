@@ -1,0 +1,289 @@
+<!-- main/templates/main/home.html -->
+{% extends 'main/base.html' %}
+<!DOCTYPE html>
+<html lang="en">
+    {% block content %}
+   
+<head>
+    {% load static %}
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sports Event Management</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <link rel="stylesheet" href="styles.css"> <!-- Link to your custom CSS -->
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+    <style>
+        /* styles.css */
+        /* styles.css */
+.navbar {
+    background-color: black; /* Set navbar background color to black */
+}
+
+.navbar .nav-link {
+    color: rgb(0, 0, 0); /* Set font color of nav links to white */
+}
+
+.navbar .navbar-brand {
+    color: rgb(0, 0, 0); /* Set font color of the brand to white */
+}
+
+/* Optional: Change the color on hover */
+.navbar .nav-link:hover {
+    color: #000000; /* Change color on hover */
+}
+body {
+    font-family: Arial, sans-serif;
+}
+
+.hero {
+    height: 100vh; /* Full height of the viewport */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    background-image: url("{% static 'images/rugby.jpg' %}"); /* Replace with your background image URL */
+    background-size: cover; /* Cover the entire section */
+    background-position: center; /* Center the image */
+    color: white; /* Change text color to white for better contrast */
+    position: relative; /* Position relative for overlay */
+}
+
+.hero h1, .hero p {
+    position: relative; /* Position relative to ensure text is above the overlay */
+    z-index: 2; /* Ensure text is above the overlay */
+}
+
+.hero::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: rgba(0, 0, 0, 0.5); /* Dark overlay for better text visibility */
+    z-index: 1; /* Ensure overlay is above the background image */
+}
+
+h2 {
+    margin-top: 30px;
+}
+.card {
+    margin-bottom: 20px;
+    opacity: 0; /* Initially hidden */
+    transform: translateY(20px); /* Start slightly lower */
+    transition: opacity 0.5s ease, transform 0.5s ease; /* Transition for smooth effect */
+}
+
+.card.visible {
+    opacity: 1; /* Fully visible */
+    transform: translateY(0); /* Move to original position */
+}
+.card:hover {
+    transform: scale(1.05); /* Scale up the card */
+    transition: transform 0.3s ease; /* Smooth transition */
+}
+@keyframes slideIn {
+    from {
+        transform: translateX(-100%);
+        opacity: 0;
+    }
+    to {
+        transform: translateX(0);
+        opacity: 1;
+    }
+}
+
+blockquote {
+    border-left: 5px solid #007bff;
+    padding-left: 15px;
+    margin: 20px 0;
+}
+
+    </style>
+    {% load static %}
+</head>
+<body>
+    <nav class="navbar navbar-expand-lg navbar-light bg-light">
+        <a class="navbar-brand" href="{% url 'home' %}">AthleticWave</a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarNav">
+            <ul class="navbar-nav ml-auto">
+                <li class="nav-item">
+                    <a class="nav-link" href="{% url 'know_more' %}">Know More</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="{% url 'login' %}">Login</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="{% url 'register' %}">Register</a>
+                </li>
+            </ul>
+        </div>
+    </nav>
+    
+        <!-- Hero Section -->
+        <header class="hero">
+            <div class="container">
+               
+                <h1 class="display-4">Welcome to AthleticWave</h1>
+                <p class="lead">Track all the live sports,events and reports</p>
+                
+            </div>
+        </header>
+    
+        <section id="features" class="py-5">
+            <div class="container">
+                <h2 class="text-center">Sports Events</h2>
+                <div class="row">
+                    <div class="col-md-4">
+                        <div class="card">
+                            <img src="{% static 'images/olympics.png' %}" class="card-img-top" alt="Feature 1">
+                            <div class="card-body">
+                                <h5 class="card-title">Olympics</h5>
+                                <p class="card-text">The Olympics is a prestigious international multi-sport event featuring athletes from around the world, held every four years, alternating between Summer and Winter Games.</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-4">
+                        <div class="card">
+                            <img src="{% static 'images/soccer.png' %}" class="card-img-top" alt="Feature 2">
+                            <div class="card-body">
+                                <h5 class="card-title">Football</h5>
+                                <p class="card-text">Football, also known as soccer, is a globally popular team sport where two teams of 11 players compete to score goals by advancing a ball into the opposing team's net.</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-4">
+                        <div class="card">
+                            <img src="{% static 'images/image.png' %}" class="card-img-top" alt="Feature 3">
+                            <div class="card-body">
+                                <h5 class="card-title">Tennis</h5>
+                                <p class="card-text">Tennis is a racket sport played individually.Tennis is a fast-paced sport played on a court,use rackets to hit a ball over,aim to outscore their opponent by landing the ball within bounds.</p>
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+        </section>
+    
+        <!-- Testimonials Section -->
+        <section id="testimonials" class="bg-light py-5">
+            <div class="container">
+                <h2 class="text-center">Testimonials</h2>
+                <div class="row">
+                    <div class="col-md-4">
+                        <blockquote class="blockquote text-center">
+                            <p class="mb-0">"This website is amazing!"</p>
+                            <footer class="blockquote-footer">Shanmukh</footer>
+                        </blockquote>
+                    </div>
+                    <div class="col-md-4">
+                        <blockquote class="blockquote text-center">
+                            <p class="mb-0">"I love the features offered!"</p>
+                            <footer class="blockquote-footer">Aditya</footer>
+                        </blockquote>
+                    </div>
+                    <div class="col-md-4">
+                        <blockquote class="blockquote text-center">
+                            <p class="mb-0">"Highly recommend to everyone!"</p>
+                            <footer class="blockquote-footer">Chandu</footer>
+                        </blockquote>
+                    </div>
+                </div>
+            </div>
+        </section>
+        
+        <!-- Contact Section -->
+        <section id="contact" class="py-5">
+            <div class="container">
+                <h2 class="text-center">Contact Us</h2>
+                <form>
+                    <div class="form-row">
+                        <div class="form-group col-md-6">
+                            <label for="name">Name</label>
+                            <input type="text" class="form-control" id="name" placeholder="Your Name">
+                        </div>
+                        <div class="form-group col-md-6">
+                            <label for="email">Email</label>
+                            <input type="email" class="form-control" id="email" placeholder="Your Email">
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label for="message">Message</label>
+                        <textarea class="form-control" id="message" rows="4" placeholder="Your Message"></textarea>
+                    </div>
+                    <button type="submit" class="btn btn-primary">Send Message</button>
+                </form>
+            </div>
+        </section>
+    
+        <!-- Footer -->
+        <footer class="bg-dark text-white text-center py-3">
+            <p>&copy; 2024 AthleticWave. All rights reserved.</p>
+        </footer>
+        {% endblock %}
+        <script > <!-- Link to your custom JavaScript -->
+    
+
+   
+        // script.js
+
+// Smooth scrolling for navigation links
+document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+    anchor.addEventListener('click', function (e) {
+        e.preventDefault();
+
+        const targetId = this.getAttribute('href');
+        const targetElement = document.querySelector(targetId);
+
+        if (targetElement) {
+            targetElement.scrollIntoView({
+                behavior: 'smooth',
+                block: 'start'
+            });
+        }
+    });
+});
+const observer = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+        if (entry.isIntersecting) {
+            entry.target.classList.add('visible');
+            observer.unobserve(entry.target); // Stop observing once the card is visible
+        }
+    });
+});
+
+// Observe each card
+document.querySelectorAll('.card').forEach(card => {
+    observer.observe(card);
+});
+// Form validation and submission alert
+document.querySelector('form').addEventListener('submit', function (e) {
+    e.preventDefault(); // Prevent the default form submission
+
+    const name = document.getElementById('name').value;
+    const email = document.getElementById('email').value;
+    const message = document.getElementById('message').value;
+
+    // Basic validation
+    if (!name || !email) {
+        alert("Please fill out all required fields.");
+        return;
+    }
+
+    // If validation passes, show a confirmation alert
+    alert(`Thank you, ${name}! Your message has been sent.`);
+    
+    // Optionally, you can reset the form after submission
+    this.reset();
+});
+    </script>
+    
+</body>
+
+</html>

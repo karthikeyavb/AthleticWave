@@ -1,0 +1,32 @@
+{% extends 'main/base.html' %}
+<!DOCTYPE html>
+<html lang="en">
+    {% block content %}
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Add Event</title>
+ <!-- Link to your custom CSS -->
+</head>
+<body>
+    <div class="container">
+        <h2>Add Event</h2>
+        <form id="event-form" method="POST">
+            {% csrf_token %}
+            {{ form.as_p }}
+            <button type="submit">Add Event</button>
+        </form>
+        <div id="event-list">
+            <h3>Upcoming Events</h3>
+            <ul id="events">
+                {% for event in events %}
+                    <li>{{ event.title }} - {{ event.date }} at {{ event.time }} - {{ event.location }}</li>
+                {% endfor %}
+            </ul>
+        </div>
+    </div>
+    {% endblock %}
+    
+     
+</body>
+</html>
